@@ -1,25 +1,24 @@
 # model_foc
 
-`model_foc` is a fixed-point, discrete-time Field-Oriented Control (FOC) Simulink model for Permanent Magnet Synchronous Motor (PMSM), incorporating an Extended Kalman Filter (EKF) observer. The model supports C code generation as a Simulink S-Function via MINGW, and is intended for algorithm validation and simulation in motor control systems.
+`model_foc` is a discrete-time Field-Oriented Control (FOC) Simulink model for Permanent Magnet Synchronous Motor (PMSM), incorporating an Extended Kalman Filter (EKF) observer. The model is designed for simulation and algorithm verification and supports C code generation as a Simulink S-Function using MINGW.
 
 ## Project Overview
 
-This project is developed in MATLAB Simulink (R2024b) and targets sensorless PMSM control applications. It integrates an EKF-based rotor position and speed estimator and implements a fixed-point FOC controller structure. The model is simulation-ready and supports local S-Function generation for acceleration or integration with higher-level systems.
+This project is developed in MATLAB Simulink (R2024b) and targets sensorless PMSM control applications. It integrates an EKF-based rotor position and speed estimator and implements a discrete-time FOC controller structure using a fixed-step solver. The model is simulation-ready and supports local S-Function generation for acceleration or integration into larger systems.
 
 ## Features
 
-- Fixed-point implementation of FOC control structure
-- Discrete-time EKF observer (current input, angle/speed output)
-- Simulink-based simulation environment with fixed-step solver support
-- Local S-Function generation using Simulink Coder and MINGW-w64
+- Discrete-time implementation of FOC control structure for PMSM
+- EKF observer using current input to estimate rotor angle and speed
+- Simulink-based simulation environment with fixed-step solver
+- S-Function C code generation supported via Simulink Coder and MINGW-w64
 - Single .slx model file, directly executable
 
 ## System Requirements
 
 - MATLAB R2024b
 - Simulink
-- Fixed-Point Designer
-- Simulink Coder
+- Simulink Coder (for S-Function generation)
 - MINGW-w64 (configured via `mex -setup`)
 
 > Note: This model is not intended for embedded target deployment. Generated code is for local S-Function use only.
@@ -45,16 +44,16 @@ This project is developed in MATLAB Simulink (R2024b) and targets sensorless PMS
 
 ```
 model_foc/
-├── foc_sim.slx       # Simulink model: fixed-point FOC + EKF for PMSM
+├── foc_sim.slx       # Simulink model: discrete-time FOC + EKF for PMSM
 └── README.md         # Project documentation
 ```
 
 ## Applications
 
 - Sensorless PMSM control algorithm development
-- Fixed-point FOC structure validation
+- Discrete-time FOC structure validation
 - EKF-based observer simulation and analysis
-- Control education and model-based algorithm prototyping
+- Control education and model-based design verification
 
 ## Author
 
