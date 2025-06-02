@@ -1,18 +1,20 @@
 # model_foc
 
-`model_foc` is a discrete-time Field-Oriented Control (FOC) Simulink model for Permanent Magnet Synchronous Motor (PMSM), incorporating an Extended Kalman Filter (EKF) observer. The model is designed for simulation and algorithm verification and supports C code generation as a Simulink S-Function using MINGW.
+`model_foc` is a discrete-time Field-Oriented Control (FOC) Simulink model for Permanent Magnet Synchronous Motor (PMSM), incorporating an Extended Kalman Filter (EKF) observer. The model is intended for simulation and algorithm verification, with system parameters generated via a preparatory MATLAB Live Script.
 
 ## Project Overview
 
-This project is developed in MATLAB Simulink (R2024b) and targets sensorless PMSM control applications. It integrates an EKF-based rotor position and speed estimator and implements a discrete-time FOC controller structure using a fixed-step solver. The model is simulation-ready and supports local S-Function generation for acceleration or integration into larger systems.
+This project is developed in MATLAB Simulink (R2024b) and targets sensorless PMSM control applications. It integrates an EKF-based rotor position and speed estimator within a discrete-time FOC framework using a fixed-step solver. The model includes a parameter initialization script (`Para_Gen.mlx`) that must be executed prior to running the Simulink model.
+
+The model supports local C code generation as a Simulink S-Function via MINGW for acceleration or integration into larger systems.
 
 ## Features
 
-- Discrete-time implementation of FOC control structure for PMSM
-- EKF observer using current input to estimate rotor angle and speed
-- Simulink-based simulation environment with fixed-step solver
-- S-Function C code generation supported via Simulink Coder and MINGW-w64
-- Single .slx model file, directly executable
+- Discrete-time implementation of FOC for PMSM with fixed-step solver
+- EKF observer using current feedback to estimate rotor angle and speed
+- MATLAB Live Script for parameter generation (`Para_Gen.mlx`)
+- Compatible with Simulink Coder and MINGW-w64 for S-Function generation
+- Structured, simulation-ready workflow
 
 ## System Requirements
 
@@ -32,28 +34,35 @@ This project is developed in MATLAB Simulink (R2024b) and targets sensorless PMS
     cd model_foc
     ```
 
-2. Launch MATLAB and open the model:
+2. Launch MATLAB and run the parameter generation script:
+
+    ```matlab
+    run('Para_Gen.mlx');
+    ```
+
+3. Open and simulate the model:
 
     ```matlab
     open_system('foc_sim.slx');
     ```
 
-3. Run the simulation in Simulink or use Simulink Coder to generate the corresponding S-Function.
+4. Optionally, generate S-Function using Simulink Coder for acceleration or integration.
 
 ## Repository Structure
 
 ```
 model_foc/
 ├── foc_sim.slx       # Simulink model: discrete-time FOC + EKF for PMSM
+├── Para_Gen.mlx      # MATLAB Live Script for system parameter generation
 └── README.md         # Project documentation
 ```
 
 ## Applications
 
 - Sensorless PMSM control algorithm development
-- Discrete-time FOC structure validation
-- EKF-based observer simulation and analysis
-- Control education and model-based design verification
+- Discrete-time control structure validation
+- EKF observer simulation and performance evaluation
+- Algorithmic prototyping and teaching in control engineering
 
 ## Author
 
